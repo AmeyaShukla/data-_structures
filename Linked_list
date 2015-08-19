@@ -1,0 +1,180 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+
+/**
+ *
+ * @author ameya
+ */
+import java.util.*;
+//define a node named Mynode
+class Mynode
+{
+    int data;
+    Mynode link;
+    // constructor for the class
+    public Mynode()
+    {
+        data=0;
+        link=null;
+    }
+    public Mynode(int info,Mynode next)
+    {
+        data=info;
+        link=next;
+    }
+}
+// class for all the functions to be performed on the linked list
+class linkfunc
+{
+    Mynode start,end;
+    int size;
+    linkfunc()
+    {
+        start=null;
+        end=null;
+        size=0;
+    }
+    
+    public void InsertAtStart(int val)
+    {
+        Mynode mnode = new Mynode(val,null);
+        if(start==null)
+        {
+            //System.out.println(mnode);
+            start=mnode;
+           //mnode.link=null;
+           end=start;
+            
+        }
+        else
+        {
+            mnode.link=start;
+          
+            
+            start=mnode;
+            
+            
+            
+        }
+        
+    }
+    public void InsertAtEnd(int val)
+    {
+        
+        Mynode mnode = new Mynode(val,null);
+        if(start==null)
+        {
+            start=mnode;
+            end=mnode;
+        }
+        else{
+       
+           end.link=mnode;
+           end=mnode;
+           
+            
+        }
+        
+    }
+    public void InsertAtPos(int val,int pos)
+    {
+        Mynode mnode = new Mynode(val,null);
+        Mynode ptr = start;
+        int i=1;
+        while(i<=pos)
+        {
+            
+            if(i==pos)
+            {
+                Mynode temp= ptr.link;
+                ptr.link=mnode;
+                mnode.link=temp;
+                break;
+            }
+            ptr=ptr.link;
+            i++;
+        }
+        
+        
+        
+    }
+    public void DelAtPos(int pos)
+    {
+        Mynode ptr = start;
+        
+        int i=1;
+        while(i<=pos-1)
+        {
+            if(i==pos-1)
+            {
+                
+                ptr.link=ptr.link.link;
+            }
+            ptr=ptr.link;
+        i++;}
+        
+        
+    }
+     public void display()
+    {
+        System.out.print("\nSingly Linked List = ");
+        if (start == null) 
+        {
+            System.out.print("empty\n");
+            return;
+        }    
+        if (start.link == null) 
+        {
+            System.out.println(start.data );
+            return;
+        }
+        Mynode ptr = start;
+        System.out.print(start.data+ "->");
+        ptr = start.link;
+        while (ptr.link != null)
+        {
+            System.out.print(ptr.data+ "->");
+            ptr = ptr.link;
+        }
+        System.out.print(ptr.data+ "\n");
+    }
+     public void showlist()
+     {
+         System.out.print("The list is  as follows");
+         if(start==null)
+         {
+             System.out.println("The list is empty");}
+         else
+         {
+             Mynode ptr=start;
+             while(ptr!=null)
+             {
+                 System.out.print("->"+ptr.data);
+                 ptr=ptr.link;
+             }
+             
+         }
+     }
+    
+}
+// main class
+public class Linked_List {
+    public static void main(String[] args) {
+        
+         linkfunc obj = new linkfunc();
+        obj.InsertAtStart(121);
+        obj.InsertAtStart(122);
+        obj.InsertAtStart(123);
+        obj.InsertAtStart(124);
+        obj.InsertAtEnd(12);
+        obj.InsertAtEnd(13);
+        obj.InsertAtPos(2,2);
+        obj.InsertAtPos(3,3);
+        obj.showlist();
+        //obj.DelAtPos(3);
+        obj.display();
+    }
+}
